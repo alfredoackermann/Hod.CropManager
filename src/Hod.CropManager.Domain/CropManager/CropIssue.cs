@@ -27,7 +27,7 @@ namespace CropManager.Domain
         ) : base(id)
         {
             Crop = crop;
-            Type = type;
+            IssueType = type;
             Notes = notes;
             Date = date;
         }

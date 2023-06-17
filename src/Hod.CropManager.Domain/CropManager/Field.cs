@@ -40,8 +40,8 @@ namespace CropManager.Domain
             Size = size;
             SoilType = soilType;
             Location = location;
-            IrrigationSystem = irrigationSystem;
-            CropRotation = cropRotation;
+            IrrigationSystems = irrigationSystem;
+            CropRotations = cropRotation;
         }
     }
 }

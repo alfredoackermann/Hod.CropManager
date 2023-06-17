@@ -18,6 +18,7 @@ namespace CropManager.Domain
         public DateTime EndDate { get; set; }
         public double Volume { get; set; }
         public IrrigationSystem IrrigationSystem { get; set; }
+        public Guid IrrigationSystemId { get; set; }
 
         public IrrigationSchedule()
         {
