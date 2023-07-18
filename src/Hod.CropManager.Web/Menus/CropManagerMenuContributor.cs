@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Hod.CropManager.Localization;
 using Hod.CropManager.MultiTenancy;
 using Volo.Abp.Identity.Web.Navigation;
@@ -34,17 +34,23 @@ public class CropManagerMenuContributor : IMenuContributor
             )
         );
 
-        if (MultiTenancyConsts.IsEnabled)
-        {
-            administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
-        }
-        else
-        {
-            administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
-        }
+        administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
 
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 3);
+
+        context.Menu.AddItem(
+            new ApplicationMenuItem(CropManagerMenus.CropManagement, l["Menu:CropManagement"], icon: "fas fa-leaf")
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.Crop, l["Menu:Crop"], "/CropManager/Domain/Crop"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.CropType, l["Menu:CropType"], "/CropManager/Domain/CropType"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.Field, l["Menu:Field"], "/CropManager/Domain/Field"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.Harvest, l["Menu:Harvest"], "/CropManager/Domain/Harvest"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.Equipment, l["Menu:Equipment"], "/CropManager/Domain/Equipment"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.LandPreparation, l["Menu:LandPreparation"], "/CropManager/Domain/LandPreparation"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.IssueType, l["Menu:IssueType"], "/CropManager/Domain/IssueType"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.Fertilizer, l["Menu:Fertilizer"], "/CropManager/Domain/Fertilizer"))
+                .AddItem(new ApplicationMenuItem(CropManagerMenus.Pesticide, l["Menu:Pesticide"], "/CropManager/Domain/Pesticide"))
+            );
 
         return Task.CompletedTask;
     }

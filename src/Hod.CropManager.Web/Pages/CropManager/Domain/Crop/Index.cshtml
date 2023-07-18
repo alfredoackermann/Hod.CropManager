@@ -1,0 +1,42 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Hod.CropManager.Web.Pages.CropManager.Domain.Crop
+@using Hod.CropManager.Localization
+@using Hod.CropManager.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<CropManagerResource> L
+@{
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Crop"].Value);
+    PageLayout.Content.MenuItemName = CropManagerMenus.Crop;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/CropManager/Domain/Crop/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/CropManager/Domain/Crop/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Crop"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                <abp-button id="NewCropButton"
+                            text="@L["CreateCrop"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="CropTable" class="nowrap"/>
+    </abp-card-body>
+</abp-card>

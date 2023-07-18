@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Values;
 
 namespace CropManager.Domain
 {
     [Table("PesticideSchedules")]
-    public class PesticideSchedule : ValueObject
+    public class PesticideSchedule : Entity<Guid>
     {
         public Crop Crop { get; set; }
         public Guid CropId { get; set; }
@@ -20,11 +21,6 @@ namespace CropManager.Domain
 
         public PesticideSchedule()
         {
-        }
-
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            throw new NotImplementedException();
         }
     }
 }

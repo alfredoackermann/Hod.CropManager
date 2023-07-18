@@ -1,0 +1,43 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Hod.CropManager.Web.Pages.CropManager.Domain.IssueType
+@using Hod.CropManager.Localization
+@using Hod.CropManager.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<CropManagerResource> L
+@{
+    PageLayout.Content.Title = L["IssueType"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:IssueType"].Value);
+    PageLayout.Content.MenuItemName = CropManagerMenus.IssueType;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/CropManager/Domain/IssueType/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/CropManager/Domain/IssueType/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["IssueType"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                <abp-button id="NewIssueTypeButton"
+                            text="@L["CreateIssueType"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="IssueTypeTable" class="nowrap"/>
+    </abp-card-body>
+</abp-card>

@@ -10,7 +10,7 @@ using Volo.Abp.Domain.Values;
 namespace CropManager.Domain
 {
     [Table("FertilizationSchedules")]
-    public class FertilizationSchedule : ValueObject
+    public class FertilizationSchedule : Entity<Guid>
     {
         public Crop Crop { get; set; }
         public Guid CropId { get; set; }
@@ -25,11 +25,6 @@ namespace CropManager.Domain
 
         public FertilizationSchedule()
         {
-        }
-
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            throw new NotImplementedException();
         }
     }
 }

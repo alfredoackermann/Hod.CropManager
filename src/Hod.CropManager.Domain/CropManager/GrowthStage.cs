@@ -7,7 +7,7 @@ using Volo.Abp.Domain.Values;
 namespace CropManager.Domain
 {
     [Table("GrowthStages")]
-    public class GrowthStage : ValueObject
+    public class GrowthStage : Entity<Guid>
     {
         public Crop Crop { get; set; }
         public Guid CropId { get; set; }
@@ -16,11 +16,6 @@ namespace CropManager.Domain
         
         public GrowthStage()
         {
-        }
-
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            throw new NotImplementedException();
         }
     }
 }

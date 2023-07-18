@@ -1,0 +1,43 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Hod.CropManager.Web.Pages.CropManager.Domain.IrrigationSystem
+@using Hod.CropManager.Localization
+@using Hod.CropManager.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<CropManagerResource> L
+@{
+    PageLayout.Content.Title = L["IrrigationSystem"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:IrrigationSystem"].Value);
+    PageLayout.Content.MenuItemName = CropManagerMenus.IrrigationSystem;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/CropManager/Domain/IrrigationSystem/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/CropManager/Domain/IrrigationSystem/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["IrrigationSystem"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                <abp-button id="NewIrrigationSystemButton"
+                            text="@L["CreateIrrigationSystem"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="IrrigationSystemTable" class="nowrap"/>
+    </abp-card-body>
+</abp-card>

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -12,6 +12,10 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using CropManager.Domain;
+using Volo.Abp.EntityFrameworkCore.Modeling;
+using System.Reflection.Emit;
+using System.Linq;
 
 namespace Hod.CropManager.EntityFrameworkCore;
 
@@ -52,6 +56,70 @@ public class CropManagerDbContext :
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Crop> Crops { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<CropType> CropTypes { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Field> Fields { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<IrrigationSystem> IrrigationSystems { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Harvest> Harvests { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<CropIssue> CropIssues { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Equipment> Equipment { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<GrowthStage> GrowthStages { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<CropRotation> CropRotations { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<FertilizationSchedule> FertilizationSchedules { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<IrrigationSchedule> IrrigationSchedules { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<LandPreparation> LandPreparations { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<PesticideSchedule> PesticideSchedules { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<IssueType> IssueTypes { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Fertilizer> Fertilizers { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Pesticide> Pesticides { get; set; }
 
     public CropManagerDbContext(DbContextOptions<CropManagerDbContext> options)
         : base(options)
@@ -73,7 +141,7 @@ public class CropManagerDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
-
+        
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>
@@ -82,5 +150,173 @@ public class CropManagerDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+
+
+        builder.Entity<Crop>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "Crops", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<CropType>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "CropTypes", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<Field>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "Fields", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<IrrigationSystem>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "IrrigationSystems", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<Harvest>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "Harvests", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<CropIssue>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "CropIssues", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<Equipment>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "Equipment", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<GrowthStage>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "GrowthStages", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<CropRotation>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "CropRotations", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<FertilizationSchedule>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "FertilizationSchedules", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<IrrigationSchedule>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "IrrigationSchedules", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+        builder.Entity<LandPreparation>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "LandPreparations", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<PesticideSchedule>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "PesticideSchedules", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<IssueType>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "IssueTypes", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<Fertilizer>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "Fertilizers", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention(); 
+            
+
+            /* Configure more properties here */
+        });
+
+
+        builder.Entity<Pesticide>(b =>
+        {
+            b.ToTable(CropManagerConsts.DbTablePrefix + "Pesticides", CropManagerConsts.DbSchema, table => table.HasComment(""));
+            b.ConfigureByConvention();
+
+
+            /* Configure more properties here */
+        });
+
+
+        var cascadeFKs = builder.Model.GetEntityTypes()
+            .Where(t => !t.GetTableName().StartsWith("Abp"))
+            .SelectMany(t => t.GetForeignKeys())
+            .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
+
+        foreach (var fk in cascadeFKs)
+            fk.DeleteBehavior = DeleteBehavior.Restrict;
     }
 }

@@ -6,5 +6,5 @@ namespace Hod.CropManager.Web;
 [Dependency(ReplaceServices = true)]
 public class CropManagerBrandingProvider : DefaultBrandingProvider
 {
-    public override string AppName => "CropManager";
+    public override string AppName => "Crop Manager";
 }
