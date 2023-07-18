@@ -10,7 +10,7 @@ using Volo.Abp.Domain.Values;
 namespace CropManager.Domain
 {
     [Table("LandPreparations")]
-    public class LandPreparation : ValueObject
+    public class LandPreparation : Entity<Guid>
     {
         public Field Field { get; set; }
         public Guid FieldId { get; set; }
@@ -22,11 +22,6 @@ namespace CropManager.Domain
         
         public LandPreparation()
         {
-        }
-
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            throw new NotImplementedException();
         }
     }
 }

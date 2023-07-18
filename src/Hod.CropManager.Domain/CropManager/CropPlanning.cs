@@ -14,9 +14,6 @@ namespace CropManager.Domain
     {
         public CropType Crop { get; set; }
         public Field Field { get; set; }
-        public ICollection<IrrigationSchedule> IrrigationSchedules { get; set; }
-        public ICollection<FertilizationSchedule> FertilizationSchedules { get; set; }
-        public ICollection<PesticideSchedule> PesticideSchedules { get; set; }
         public DateTime PlantingDate { get; set; }
         public DateTime HarvestDate { get; set; }
         public double Size { get; set; }
@@ -30,9 +27,6 @@ namespace CropManager.Domain
             Guid id,
             CropType crop,
             Field field,
-            ICollection<IrrigationSchedule> irrigationSchedule,
-            ICollection<FertilizationSchedule> fertilizationSchedule,
-            ICollection<PesticideSchedule> pesticideSchedule,
             DateTime plantingDate,
             DateTime harvestDate,
             double size,
@@ -41,9 +35,6 @@ namespace CropManager.Domain
         {
             Crop = crop;
             Field = field;
-            IrrigationSchedules = irrigationSchedule;
-            FertilizationSchedules = fertilizationSchedule;
-            PesticideSchedules = pesticideSchedule;
             PlantingDate = plantingDate;
             HarvestDate = harvestDate;
             Size = size;
